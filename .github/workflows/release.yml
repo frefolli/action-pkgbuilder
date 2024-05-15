@@ -15,7 +15,7 @@ jobs:
           key: ${{ runner.os }}-cache
           restore-keys: ${{ runner.os }}-pkgbuilder
       - name: Downloads python-pkgbuilder
-        runs: |
+        run: |
           if [ -z ~/.cache/python-pkgbuilder ]; then
             mkdir -p ~/.cache/python-pkgbuilder
             git clone https://github.com/frefolli/python-pkgbuilder ~/.cache/python-pkgbuilder
@@ -24,7 +24,7 @@ jobs:
             git pull
           end
       - name: Runs python-pkgbuilder
-        runs: |
+        run: |
           python ~/.cache/python-pkgbuilder/pkgbuilder/__main__.py -o PKGBUILD
       - uses: "marvinpinto/action-automatic-releases@latest"
         with:
