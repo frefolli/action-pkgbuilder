@@ -32,7 +32,7 @@ jobs:
           fi
       - name: Runs python-pkgbuilder
         run: |
-          python ~/.cache/python-pkgbuilder/pkgbuilder/__main__.py -o PKGBUILD
+          python ~/.cache/python-pkgbuilder/pkgbuilder/__main__.py -v -o PKGBUILD
       - uses: "marvinpinto/action-automatic-releases@latest"
         with:
           repo_token: "${{ secrets.github_token }}"
