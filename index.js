@@ -14,9 +14,11 @@ try {
     exec.exec('git pull');
     exec.exec(`cd ${prevdir}`);
   } else {
+    exex.exec(`mkdir -p ${pkgbuilder_install_dir}`);
     exec.exec(`git clone https://github.com/frefolli/python-pkgbuilder/ ${pkgbuilder_install_dir}`);
   }
 
+  exec.exec(`ls ${pkgbuilder_install_dir}`)
   exec.exec(`python ${pkgbuilder_install_dir}/pkgbuilder/__main__.py -o ${output_path}`);
 } catch (error) {
   core.setFailed(error.message);
