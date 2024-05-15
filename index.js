@@ -17,8 +17,7 @@ try {
     exec.exec(`git clone https://github.com/frefolli/python-pkgbuilder/ ${pkgbuilder_install_dir}`);
   }
 
-  exec.exec(`ln -sf ${pkgbuilder_install_dir}/pkgbuilder pkgbuilder`);
-  exec.exec(`python -m pkgbuilder -o ${output_path}`);
+  exec.exec(`python ${pkgbuilder_install_dir}/pkgbuilder/__main__.py -o ${output_path}`);
 } catch (error) {
   core.setFailed(error.message);
 }
