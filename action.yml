@@ -1,0 +1,14 @@
+name: action-pkgbuilder
+description: "Downloads pkgbuilder if not yet in cache and run it to craft a PKGBUILD"
+inputs:
+  cache-path:
+    description: "path of cache directory"
+    required: true
+    default: "~/.cache"
+  output-path:
+    description: "path of output PKGBUILD"
+    required: false
+    default: "PKGBUILD"
+runs:
+  using: 'node16'
+  main: 'index.js'
