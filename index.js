@@ -18,7 +18,7 @@ try {
   }
 
   exec.exec(`ln -sf ${pkgbuilder_install_dir}/pkgbuilder pkgbuilder`);
-  exec.exec(`python -m pkgbuilder > ${output_path}`);
+  exec.exec(`python -m pkgbuilder -o ${output_path}`);
 } catch (error) {
   core.setFailed(error.message);
 }
