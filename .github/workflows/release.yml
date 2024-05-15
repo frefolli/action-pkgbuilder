@@ -1,6 +1,13 @@
 name: Workflow Pkgbuilder
 on:
   workflow_call:
+    inputs:
+      VERSION:
+        required: true
+        type: string
+    secrets:
+      GITHUB_TOKEN:
+        required: true
 jobs:
   job:
     runs-on: ubuntu-latest
