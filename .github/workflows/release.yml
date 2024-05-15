@@ -16,13 +16,13 @@ jobs:
           restore-keys: ${{ runner.os }}-pkgbuilder
       - name: Downloads python-pkgbuilder
         run: |
-          if [ -z ~/.cache/python-pkgbuilder ]; then
-            mkdir -p ~/.cache/python-pkgbuilder
-            git clone https://github.com/frefolli/python-pkgbuilder ~/.cache/python-pkgbuilder
-          else
+          if [ -f ~/.cache/python-pkgbuilder ]; then
             cd ~/.cache/python-pkgbuilder
             git pull
-          end
+          else
+            mkdir -p ~/.cache/python-pkgbuilder
+            git clone https://github.com/frefolli/python-pkgbuilder ~/.cache/python-pkgbuilder
+          fi
       - name: Runs python-pkgbuilder
         run: |
           python ~/.cache/python-pkgbuilder/pkgbuilder/__main__.py -o PKGBUILD
