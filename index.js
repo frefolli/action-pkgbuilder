@@ -14,7 +14,7 @@ try {
     exec.exec('git pull');
     exec.exec(`cd ${prevdir}`);
   } else {
-    exex.exec(`mkdir -p ${pkgbuilder_install_dir}`);
+    exec.exec(`mkdir -p ${pkgbuilder_install_dir}`);
     exec.exec(`git clone https://github.com/frefolli/python-pkgbuilder/ ${pkgbuilder_install_dir}`);
   }
 
