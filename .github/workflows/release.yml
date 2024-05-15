@@ -2,11 +2,11 @@ name: Workflow Pkgbuilder
 on:
   workflow_call:
     inputs:
-      VERSION:
+      version:
         required: true
         type: string
     secrets:
-      GITHUB_TOKEN:
+      github-token:
         required: true
 jobs:
   job:
@@ -35,9 +35,9 @@ jobs:
           python ~/.cache/python-pkgbuilder/pkgbuilder/__main__.py -o PKGBUILD
       - uses: "marvinpinto/action-automatic-releases@latest"
         with:
-          repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          automatic_release_tag: "${{ inputs.VERSION }}"
+          repo_token: "${{ secrets.github_token }}"
+          automatic_release_tag: "${{ inputs.version }}"
           prerelease: true
-          title: "Latest ${{ inputs.VERSION }} Build"
+          title: "Latest ${{ inputs.version }} Build"
           files: |
             PKGBUILD
