@@ -1,0 +1,36 @@
+name: Workflow Pkgbuilder
+on:
+  workflow_call:
+jobs:
+  job:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Cache Pkgbuilder
+        uses: actions/cache@v1
+        with:
+          path: ~/.cache
+          key: ${{ runner.os }}-cache
+          restore-keys: ${{ runner.os }}-pkgbuilder
+      - name: Downloads python-pkgbuilder
+        runs: |
+          if [ -z ~/.cache/python-pkgbuilder ]; then
+            mkdir -p ~/.cache/python-pkgbuilder
+            git clone https://github.com/frefolli/python-pkgbuilder ~/.cache/python-pkgbuilder
+          else
+            cd ~/.cache/python-pkgbuilder
+            git pull
+          end
+      - name: Runs python-pkgbuilder
+        runs: |
+          python ~/.cache/python-pkgbuilder/pkgbuilder/__main__.py -o PKGBUILD
+      - uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          automatic_release_tag: "${{ env.VERSION }}"
+          prerelease: true
+          title: "Latest ${{ env.VERSION }} Build"
+          files: |
+            PKGBUILD
