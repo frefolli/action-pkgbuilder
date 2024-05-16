@@ -23,7 +23,7 @@ jobs:
           restore-keys: ${{ runner.os }}-pkgbuilder
       - name: Downloads python-pkgbuilder
         run: |
-          if [ -f ~/.cache/python-pkgbuilder ]; then
+          if [ -d ~/.cache/python-pkgbuilder ]; then
             cd ~/.cache/python-pkgbuilder
             git pull
           else
